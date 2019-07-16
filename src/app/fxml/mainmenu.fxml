@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.BorderPane?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.MainMenuController">
+   <left>
+      <ImageView fx:id="singleRaceButton" fitHeight="600.0" fitWidth="300.0" onMouseClicked="#singleClick" onMouseEntered="#singleZoomIn" onMouseExited="#singleZoomOut" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
+         <image>
+            <Image url="@../../Images/singlerace.png" />
+         </image>
+      </ImageView>
+   </left>
+   <center>
+      <ImageView fx:id="seasonButton" fitHeight="600.0" fitWidth="300.0" onMouseClicked="#seasonClick" onMouseEntered="#seasonZoomIn" onMouseExited="#seasonZoomOut" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
+         <image>
+            <Image url="@../../Images/season.png" />
+         </image>
+      </ImageView>
+   </center>
+   <right>
+      <ImageView fx:id="settingsButton" fitHeight="600.0" fitWidth="300.0" onMouseClicked="#settingsClick" onMouseEntered="#settingsZoomIn" onMouseExited="#settingsZoomOut" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
+         <image>
+            <Image url="@../../Images/settings.png" />
+         </image>
+      </ImageView>
+   </right>
+</BorderPane>

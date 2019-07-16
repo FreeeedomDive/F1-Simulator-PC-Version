@@ -1,0 +1,20 @@
+Hamilton;Mercedes;#05CDB7;1;1;1.03
+Bottas;Mercedes;#05CDB7;2;1;1.032
+Vettel;Ferrari;#BA0307;1;1;1.03
+Raikkonen;Ferrari;#BA0307;2;1;1.032
+Ricciardo;Red Bull Racing;#050074;1;1.005;1.035
+Verstappen;Red Bull Racing;#050074;2;1.005;1.035
+Perez;Force India;#F68CC5;1;1.007;1.038
+Ocon;Force India;#F68CC5;2;1.007;1.038
+Massa;Williams;#FFFFFF;1;1.01;1.04
+Stroll;Williams;#FFFFFF;2;1.011;1.041
+Hulkenberg;Renault;#FFDC05;1;1.011;1.041
+Palmer;Renault;#FFDC05;2;1.012;1.042
+Alonso;McLaren;#FA9B0F;1;1.01;1.042
+Vandoorne;McLaren;#FA9B0F;2;1.012;1.0435
+Sainz;Toro Rosso;#0000F6;1;1.01;1.041
+Kvyat;Toro Rosso;#0000F6;2;1.01;1.042
+Grosjean;Haas;#5C0003;2;1.01;1.04
+Magnussen;Haas;#5C0003;1;1.01;1.04
+Wehrlein;Sauber;#006CFA;1;1.014;1.043
+Ericsson;Sauber;#006CFA;2;1.014;1.046

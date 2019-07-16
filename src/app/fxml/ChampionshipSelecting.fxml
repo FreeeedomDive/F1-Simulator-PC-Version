@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox prefHeight="400.0" prefWidth="300.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.ChampionshipSelectingController">
+   <children>
+      <Label fx:id="active" alignment="CENTER" contentDisplay="CENTER" prefHeight="50.0" prefWidth="300.0" text="Active championships: " textAlignment="CENTER">
+         <font>
+            <Font name="Formula1 Display-Regular" size="19.0" />
+         </font></Label>
+      <ListView fx:id="listView" editable="true" prefHeight="310.0" prefWidth="300.0" />
+      <HBox prefHeight="40.0" prefWidth="300.0">
+         <children>
+            <Button fx:id="load" mnemonicParsing="false" onAction="#loadChampionship" prefHeight="35.0" prefWidth="90.0" text="Load">
+               <HBox.margin>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </HBox.margin>
+               <font>
+                  <Font name="Formula1 Display-Regular" size="12.0" />
+               </font>
+            </Button>
+            <Button fx:id="remove" mnemonicParsing="false" onAction="#removeChampionship" prefHeight="35.0" prefWidth="90.0" text="Remove">
+               <HBox.margin>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </HBox.margin>
+               <font>
+                  <Font name="Formula1 Display-Regular" size="12.0" />
+               </font>
+            </Button>
+            <Button fx:id="create" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#createNewChampionship" prefHeight="35.0" prefWidth="90.0" text="Create" textAlignment="CENTER">
+               <font>
+                  <Font name="Formula1 Display-Regular" size="12.0" />
+               </font>
+               <HBox.margin>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </HBox.margin>
+            </Button>
+         </children>
+      </HBox>
+   </children>
+</VBox>

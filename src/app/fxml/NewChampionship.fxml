@@ -1,0 +1,808 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<SplitPane dividerPositions="0.29797979797979796" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.NewChampionshipController">
+   <items>
+       <VBox minHeight="0.0" minWidth="160.0" prefHeight="398.0" prefWidth="160.0">
+          <children>
+              <TextField fx:id="champName" prefWidth="165.0" promptText="Name">
+                  <font>
+                      <Font name="Formula1 Display-Regular" size="12.0" />
+                  </font>
+                  <VBox.margin>
+                      <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                  </VBox.margin>
+              </TextField>
+            <TextArea fx:id="champDescription" prefHeight="200.0" prefWidth="200.0" promptText="Description" wrapText="true">
+               <font>
+                  <Font name="Formula1 Display-Regular" size="12.0" />
+               </font>
+               <VBox.margin>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </VBox.margin>
+            </TextArea>
+            <Button fx:id="s2019" mnemonicParsing="false" onAction="#create2019season" prefWidth="165.0" text="2019 season">
+               <font>
+                  <Font name="Formula1 Display-Regular" size="12.0" />
+               </font>
+               <VBox.margin>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </VBox.margin>
+            </Button>
+            <Button fx:id="s2018" mnemonicParsing="false" onAction="#create2018season" prefWidth="165.0" text="2018 season">
+               <font>
+                  <Font name="Formula1 Display-Regular" size="12.0" />
+               </font>
+               <VBox.margin>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </VBox.margin>
+            </Button>
+            <Button fx:id="s2017" mnemonicParsing="false" onAction="#create2017season" prefWidth="165.0" text="2017 season">
+               <font>
+                  <Font name="Formula1 Display-Regular" size="12.0" />
+               </font>
+               <VBox.margin>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </VBox.margin>
+            </Button>
+            <Button fx:id="s2016" mnemonicParsing="false" onAction="#create2016season" prefWidth="165.0" text="2016 season">
+               <font>
+                  <Font name="Formula1 Display-Regular" size="12.0" />
+               </font>
+               <VBox.margin>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </VBox.margin>
+            </Button>
+              <Button fx:id="champCreate" defaultButton="true" mnemonicParsing="false" onAction="#create" prefHeight="40.0" prefWidth="165.0" text="Create" textAlignment="CENTER">
+                  <font>
+                      <Font name="Formula1 Display-Regular" size="12.0" />
+                  </font>
+                  <VBox.margin>
+                      <Insets bottom="5.0" left="5.0" right="5.0" top="50.0" />
+                  </VBox.margin>
+              </Button>
+          </children>
+       </VBox>
+       <VBox minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+          <children>
+              <Label text="Drivers and teams">
+                  <VBox.margin>
+                      <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                  </VBox.margin>
+                  <font>
+                      <Font name="Formula1 Display-Regular" size="12.0" />
+                  </font>
+              </Label>
+              <TitledPane fx:id="titled1" text="Team 1">
+                 <content>
+                     <VBox minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                        <children>
+                            <TextField fx:id="team1name" layoutY="2.0" promptText="Team Tag">
+                                <font>
+                                    <Font name="Formula1 Display-Regular" size="12.0" />
+                                </font>
+                                <VBox.margin>
+                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                </VBox.margin>
+                            </TextField>
+                            <ColorPicker fx:id="team1color" prefHeight="25.0" prefWidth="390.0">
+                                <VBox.margin>
+                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                </VBox.margin>
+                            </ColorPicker>
+                            <HBox maxHeight="30.0" prefHeight="100.0" prefWidth="200.0">
+                                <VBox.margin>
+                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                </VBox.margin>
+                               <children>
+                                   <TextField fx:id="team1driver1name" maxHeight="120.0" maxWidth="130.0" promptText="Driver 1 name">
+                                       <HBox.margin>
+                                           <Insets />
+                                       </HBox.margin>
+                                       <font>
+                                           <Font name="Formula1 Display-Regular" size="12.0" />
+                                       </font>
+                                   </TextField>
+                                   <VBox prefHeight="200.0" prefWidth="250.0">
+                                       <HBox.margin>
+                                           <Insets left="5.0" />
+                                       </HBox.margin>
+                                      <children>
+                                          <Slider fx:id="team1driver1slider1" max="1.0" />
+                                          <Slider fx:id="team1driver1slider2" max="1.0" />
+                                      </children>
+                                   </VBox>
+                               </children>
+                            </HBox>
+                            <HBox layoutX="25.0" layoutY="91.0" maxHeight="30.0" prefHeight="100.0" prefWidth="200.0">
+                                <VBox.margin>
+                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                </VBox.margin>
+                               <children>
+                                   <TextField fx:id="team1driver2name" maxHeight="120.0" maxWidth="130.0" promptText="Driver 2 name">
+                                       <font>
+                                           <Font name="Formula1 Display-Regular" size="12.0" />
+                                       </font>
+                                       <HBox.margin>
+                                           <Insets />
+                                       </HBox.margin>
+                                   </TextField>
+                                   <VBox prefHeight="200.0" prefWidth="250.0">
+                                       <HBox.margin>
+                                           <Insets left="5.0" />
+                                       </HBox.margin>
+                                      <children>
+                                          <Slider fx:id="team1driver2slider1" max="1.0" />
+                                          <Slider fx:id="team1driver2slider2" max="1.0" />
+                                      </children>
+                                   </VBox>
+                               </children>
+                            </HBox>
+                        </children>
+                     </VBox>
+                 </content>
+               <font>
+                  <Font name="Formula1 Display-Regular" size="12.0" />
+               </font>
+              </TitledPane>
+              <TitledPane fx:id="titled2" expanded="false" text="Team 2">
+                 <content>
+                     <VBox minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                        <children>
+                            <TextField fx:id="team2name" layoutY="2.0" promptText="Team Tag">
+                                <font>
+                                    <Font name="Formula1 Display-Regular" size="12.0" />
+                                </font>
+                                <VBox.margin>
+                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                </VBox.margin>
+                            </TextField>
+                            <ColorPicker fx:id="team2color" prefHeight="25.0" prefWidth="390.0">
+                                <VBox.margin>
+                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                </VBox.margin>
+                            </ColorPicker>
+                            <HBox maxHeight="30.0" prefHeight="100.0" prefWidth="200.0">
+                                <VBox.margin>
+                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                </VBox.margin>
+                               <children>
+                                   <TextField fx:id="team2driver1name" maxHeight="120.0" maxWidth="130.0" promptText="Driver 1 name">
+                                       <HBox.margin>
+                                           <Insets />
+                                       </HBox.margin>
+                                       <font>
+                                           <Font name="Formula1 Display-Regular" size="12.0" />
+                                       </font>
+                                   </TextField>
+                                   <VBox prefHeight="200.0" prefWidth="250.0">
+                                       <HBox.margin>
+                                           <Insets left="5.0" />
+                                       </HBox.margin>
+                                      <children>
+                                          <Slider fx:id="team2driver1slider1" max="1.0" />
+                                          <Slider fx:id="team2driver1slider2" max="1.0" />
+                                      </children>
+                                   </VBox>
+                               </children>
+                            </HBox>
+                            <HBox layoutX="25.0" layoutY="91.0" maxHeight="30.0" prefHeight="100.0" prefWidth="200.0">
+                                <VBox.margin>
+                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                </VBox.margin>
+                               <children>
+                                   <TextField fx:id="team2driver2name" maxHeight="120.0" maxWidth="130.0" promptText="Driver 2 name">
+                                       <font>
+                                           <Font name="Formula1 Display-Regular" size="12.0" />
+                                       </font>
+                                       <HBox.margin>
+                                           <Insets />
+                                       </HBox.margin>
+                                   </TextField>
+                                   <VBox prefHeight="200.0" prefWidth="250.0">
+                                       <HBox.margin>
+                                           <Insets left="5.0" />
+                                       </HBox.margin>
+                                      <children>
+                                          <Slider fx:id="team2driver2slider1" max="1.0" />
+                                          <Slider fx:id="team2driver2slider2" max="1.0" />
+                                      </children>
+                                   </VBox>
+                               </children>
+                            </HBox>
+                        </children>
+                     </VBox>
+                 </content>
+               <font>
+                  <Font name="Formula1 Display-Regular" size="12.0" />
+               </font>
+              </TitledPane>
+              <TitledPane fx:id="titled3" expanded="false" text="Team 3">
+                 <content>
+                     <VBox minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                        <children>
+                            <TextField fx:id="team3name" layoutY="2.0" promptText="Team Tag">
+                                <font>
+                                    <Font name="Formula1 Display-Regular" size="12.0" />
+                                </font>
+                                <VBox.margin>
+                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                </VBox.margin>
+                            </TextField>
+                            <ColorPicker fx:id="team3color" prefHeight="25.0" prefWidth="390.0">
+                                <VBox.margin>
+                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                </VBox.margin>
+                            </ColorPicker>
+                            <HBox maxHeight="30.0" prefHeight="100.0" prefWidth="200.0">
+                                <VBox.margin>
+                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                </VBox.margin>
+                               <children>
+                                   <TextField fx:id="team3driver1name" maxHeight="120.0" maxWidth="130.0" promptText="Driver 1 name">
+                                       <HBox.margin>
+                                           <Insets />
+                                       </HBox.margin>
+                                       <font>
+                                           <Font name="Formula1 Display-Regular" size="12.0" />
+                                       </font>
+                                   </TextField>
+                                   <VBox prefHeight="200.0" prefWidth="250.0">
+                                       <HBox.margin>
+                                           <Insets left="5.0" />
+                                       </HBox.margin>
+                                      <children>
+                                          <Slider fx:id="team3driver1slider1" max="1.0" />
+                                          <Slider fx:id="team3driver1slider2" max="1.0" />
+                                      </children>
+                                   </VBox>
+                               </children>
+                            </HBox>
+                            <HBox layoutX="25.0" layoutY="91.0" maxHeight="30.0" prefHeight="100.0" prefWidth="200.0">
+                                <VBox.margin>
+                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                </VBox.margin>
+                               <children>
+                                   <TextField fx:id="team3driver2name" maxHeight="120.0" maxWidth="130.0" promptText="Driver 2 name">
+                                       <font>
+                                           <Font name="Formula1 Display-Regular" size="12.0" />
+                                       </font>
+                                       <HBox.margin>
+                                           <Insets />
+                                       </HBox.margin>
+                                   </TextField>
+                                   <VBox prefHeight="200.0" prefWidth="250.0">
+                                       <HBox.margin>
+                                           <Insets left="5.0" />
+                                       </HBox.margin>
+                                      <children>
+                                          <Slider fx:id="team3driver2slider1" max="1.0" />
+                                          <Slider fx:id="team3driver2slider2" max="1.0" />
+                                      </children>
+                                   </VBox>
+                               </children>
+                            </HBox>
+                        </children>
+                     </VBox>
+                 </content>
+               <font>
+                  <Font name="Formula1 Display-Regular" size="12.0" />
+               </font>
+              </TitledPane>
+              <TitledPane fx:id="titled4" expanded="false" text="Team 4">
+                 <content>
+                     <VBox minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                        <children>
+                            <TextField fx:id="team4name" layoutY="2.0" promptText="Team Tag">
+                                <font>
+                                    <Font name="Formula1 Display-Regular" size="12.0" />
+                                </font>
+                                <VBox.margin>
+                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                </VBox.margin>
+                            </TextField>
+                            <ColorPicker fx:id="team4color" prefHeight="25.0" prefWidth="390.0">
+                                <VBox.margin>
+                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                </VBox.margin>
+                            </ColorPicker>
+                            <HBox maxHeight="30.0" prefHeight="100.0" prefWidth="200.0">
+                                <VBox.margin>
+                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                </VBox.margin>
+                               <children>
+                                   <TextField fx:id="team4driver1name" maxHeight="120.0" maxWidth="130.0" promptText="Driver 1 name">
+                                       <HBox.margin>
+                                           <Insets />
+                                       </HBox.margin>
+                                       <font>
+                                           <Font name="Formula1 Display-Regular" size="12.0" />
+                                       </font>
+                                   </TextField>
+                                   <VBox prefHeight="200.0" prefWidth="250.0">
+                                       <HBox.margin>
+                                           <Insets left="5.0" />
+                                       </HBox.margin>
+                                      <children>
+                                          <Slider fx:id="team4driver1slider1" max="1.0" />
+                                          <Slider fx:id="team4driver1slider2" max="1.0" />
+                                      </children>
+                                   </VBox>
+                               </children>
+                            </HBox>
+                            <HBox layoutX="25.0" layoutY="91.0" maxHeight="30.0" prefHeight="100.0" prefWidth="200.0">
+                                <VBox.margin>
+                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                </VBox.margin>
+                               <children>
+                                   <TextField fx:id="team4driver2name" maxHeight="120.0" maxWidth="130.0" promptText="Driver 2 name">
+                                       <font>
+                                           <Font name="Formula1 Display-Regular" size="12.0" />
+                                       </font>
+                                       <HBox.margin>
+                                           <Insets />
+                                       </HBox.margin>
+                                   </TextField>
+                                   <VBox prefHeight="200.0" prefWidth="250.0">
+                                       <HBox.margin>
+                                           <Insets left="5.0" />
+                                       </HBox.margin>
+                                      <children>
+                                          <Slider fx:id="team4driver2slider1" max="1.0" />
+                                          <Slider fx:id="team4driver2slider2" max="1.0" />
+                                      </children>
+                                   </VBox>
+                               </children>
+                            </HBox>
+                        </children>
+                     </VBox>
+                 </content>
+               <font>
+                  <Font name="Formula1 Display-Regular" size="12.0" />
+               </font>
+              </TitledPane>
+              <TitledPane fx:id="titled5" expanded="false" text="Team 5">
+                 <content>
+                     <VBox minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                        <children>
+                            <TextField fx:id="team5name" layoutY="2.0" promptText="Team Tag">
+                                <font>
+                                    <Font name="Formula1 Display-Regular" size="12.0" />
+                                </font>
+                                <VBox.margin>
+                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                </VBox.margin>
+                            </TextField>
+                            <ColorPicker fx:id="team5color" prefHeight="25.0" prefWidth="390.0">
+                                <VBox.margin>
+                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                </VBox.margin>
+                            </ColorPicker>
+                            <HBox maxHeight="30.0" prefHeight="100.0" prefWidth="200.0">
+                                <VBox.margin>
+                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                </VBox.margin>
+                               <children>
+                                   <TextField fx:id="team5driver1name" maxHeight="120.0" maxWidth="130.0" promptText="Driver 1 name">
+                                       <HBox.margin>
+                                           <Insets />
+                                       </HBox.margin>
+                                       <font>
+                                           <Font name="Formula1 Display-Regular" size="12.0" />
+                                       </font>
+                                   </TextField>
+                                   <VBox prefHeight="200.0" prefWidth="250.0">
+                                       <HBox.margin>
+                                           <Insets left="5.0" />
+                                       </HBox.margin>
+                                      <children>
+                                          <Slider fx:id="team5driver1slider1" max="1.0" />
+                                          <Slider fx:id="team5driver1slider2" max="1.0" />
+                                      </children>
+                                   </VBox>
+                               </children>
+                            </HBox>
+                            <HBox layoutX="25.0" layoutY="91.0" maxHeight="30.0" prefHeight="100.0" prefWidth="200.0">
+                                <VBox.margin>
+                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                </VBox.margin>
+                               <children>
+                                   <TextField fx:id="team5driver2name" maxHeight="120.0" maxWidth="130.0" promptText="Driver 2 name">
+                                       <font>
+                                           <Font name="Formula1 Display-Regular" size="12.0" />
+                                       </font>
+                                       <HBox.margin>
+                                           <Insets />
+                                       </HBox.margin>
+                                   </TextField>
+                                   <VBox prefHeight="200.0" prefWidth="250.0">
+                                       <HBox.margin>
+                                           <Insets left="5.0" />
+                                       </HBox.margin>
+                                      <children>
+                                          <Slider fx:id="team5driver2slider1" max="1.0" />
+                                          <Slider fx:id="team5driver2slider2" max="1.0" />
+                                      </children>
+                                   </VBox>
+                               </children>
+                            </HBox>
+                        </children>
+                     </VBox>
+                 </content>
+               <font>
+                  <Font name="Formula1 Display-Regular" size="12.0" />
+               </font>
+              </TitledPane>
+              <TitledPane fx:id="titled6" expanded="false" text="Team 6">
+                 <content>
+                     <VBox minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                        <children>
+                            <TextField fx:id="team6name" layoutY="2.0" promptText="Team Tag">
+                                <font>
+                                    <Font name="Formula1 Display-Regular" size="12.0" />
+                                </font>
+                                <VBox.margin>
+                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                </VBox.margin>
+                            </TextField>
+                            <ColorPicker fx:id="team6color" prefHeight="25.0" prefWidth="390.0">
+                                <VBox.margin>
+                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                </VBox.margin>
+                            </ColorPicker>
+                            <HBox maxHeight="30.0" prefHeight="100.0" prefWidth="200.0">
+                                <VBox.margin>
+                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                </VBox.margin>
+                               <children>
+                                   <TextField fx:id="team6driver1name" maxHeight="120.0" maxWidth="130.0" promptText="Driver 1 name">
+                                       <HBox.margin>
+                                           <Insets />
+                                       </HBox.margin>
+                                       <font>
+                                           <Font name="Formula1 Display-Regular" size="12.0" />
+                                       </font>
+                                   </TextField>
+                                   <VBox prefHeight="200.0" prefWidth="250.0">
+                                       <HBox.margin>
+                                           <Insets left="5.0" />
+                                       </HBox.margin>
+                                      <children>
+                                          <Slider fx:id="team6driver1slider1" max="1.0" />
+                                          <Slider fx:id="team6driver1slider2" max="1.0" />
+                                      </children>
+                                   </VBox>
+                               </children>
+                            </HBox>
+                            <HBox layoutX="25.0" layoutY="91.0" maxHeight="30.0" prefHeight="100.0" prefWidth="200.0">
+                                <VBox.margin>
+                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                </VBox.margin>
+                               <children>
+                                   <TextField fx:id="team6driver2name" maxHeight="120.0" maxWidth="130.0" promptText="Driver 2 name">
+                                       <font>
+                                           <Font name="Formula1 Display-Regular" size="12.0" />
+                                       </font>
+                                       <HBox.margin>
+                                           <Insets />
+                                       </HBox.margin>
+                                   </TextField>
+                                   <VBox prefHeight="200.0" prefWidth="250.0">
+                                       <HBox.margin>
+                                           <Insets left="5.0" />
+                                       </HBox.margin>
+                                      <children>
+                                          <Slider fx:id="team6driver2slider1" max="1.0" />
+                                          <Slider fx:id="team6driver2slider2" max="1.0" />
+                                      </children>
+                                   </VBox>
+                               </children>
+                            </HBox>
+                        </children>
+                     </VBox>
+                 </content>
+               <font>
+                  <Font name="Formula1 Display-Regular" size="12.0" />
+               </font>
+              </TitledPane>
+              <TitledPane fx:id="titled7" expanded="false" text="Team 7">
+                 <content>
+                     <VBox minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                        <children>
+                            <TextField fx:id="team7name" layoutY="2.0" promptText="Team Tag">
+                                <font>
+                                    <Font name="Formula1 Display-Regular" size="12.0" />
+                                </font>
+                                <VBox.margin>
+                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                </VBox.margin>
+                            </TextField>
+                            <ColorPicker fx:id="team7color" prefHeight="25.0" prefWidth="390.0">
+                                <VBox.margin>
+                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                </VBox.margin>
+                            </ColorPicker>
+                            <HBox maxHeight="30.0" prefHeight="100.0" prefWidth="200.0">
+                                <VBox.margin>
+                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                </VBox.margin>
+                               <children>
+                                   <TextField fx:id="team7driver1name" maxHeight="120.0" maxWidth="130.0" promptText="Driver 1 name">
+                                       <HBox.margin>
+                                           <Insets />
+                                       </HBox.margin>
+                                       <font>
+                                           <Font name="Formula1 Display-Regular" size="12.0" />
+                                       </font>
+                                   </TextField>
+                                   <VBox prefHeight="200.0" prefWidth="250.0">
+                                       <HBox.margin>
+                                           <Insets left="5.0" />
+                                       </HBox.margin>
+                                      <children>
+                                          <Slider fx:id="team7driver1slider1" max="1.0" />
+                                          <Slider fx:id="team7driver1slider2" max="1.0" />
+                                      </children>
+                                   </VBox>
+                               </children>
+                            </HBox>
+                            <HBox layoutX="25.0" layoutY="91.0" maxHeight="30.0" prefHeight="100.0" prefWidth="200.0">
+                                <VBox.margin>
+                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                </VBox.margin>
+                               <children>
+                                   <TextField fx:id="team7driver2name" maxHeight="120.0" maxWidth="130.0" promptText="Driver 2 name">
+                                       <font>
+                                           <Font name="Formula1 Display-Regular" size="12.0" />
+                                       </font>
+                                       <HBox.margin>
+                                           <Insets />
+                                       </HBox.margin>
+                                   </TextField>
+                                   <VBox prefHeight="200.0" prefWidth="250.0">
+                                       <HBox.margin>
+                                           <Insets left="5.0" />
+                                       </HBox.margin>
+                                      <children>
+                                          <Slider fx:id="team7driver2slider1" max="1.0" />
+                                          <Slider fx:id="team7driver2slider2" max="1.0" />
+                                      </children>
+                                   </VBox>
+                               </children>
+                            </HBox>
+                        </children>
+                     </VBox>
+                 </content>
+               <font>
+                  <Font name="Formula1 Display-Regular" size="12.0" />
+               </font>
+              </TitledPane>
+              <TitledPane fx:id="titled8" expanded="false" text="Team 8">
+                 <content>
+                     <VBox minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                        <children>
+                            <TextField fx:id="team8name" layoutY="2.0" promptText="Team Tag">
+                                <font>
+                                    <Font name="Formula1 Display-Regular" size="12.0" />
+                                </font>
+                                <VBox.margin>
+                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                </VBox.margin>
+                            </TextField>
+                            <ColorPicker fx:id="team8color" prefHeight="25.0" prefWidth="390.0">
+                                <VBox.margin>
+                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                </VBox.margin>
+                            </ColorPicker>
+                            <HBox maxHeight="30.0" prefHeight="100.0" prefWidth="200.0">
+                                <VBox.margin>
+                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                </VBox.margin>
+                               <children>
+                                   <TextField fx:id="team8driver1name" maxHeight="120.0" maxWidth="130.0" promptText="Driver 1 name">
+                                       <HBox.margin>
+                                           <Insets />
+                                       </HBox.margin>
+                                       <font>
+                                           <Font name="Formula1 Display-Regular" size="12.0" />
+                                       </font>
+                                   </TextField>
+                                   <VBox prefHeight="200.0" prefWidth="250.0">
+                                       <HBox.margin>
+                                           <Insets left="5.0" />
+                                       </HBox.margin>
+                                      <children>
+                                          <Slider fx:id="team8driver1slider1" max="1.0" />
+                                          <Slider fx:id="team8driver1slider2" max="1.0" />
+                                      </children>
+                                   </VBox>
+                               </children>
+                            </HBox>
+                            <HBox layoutX="25.0" layoutY="91.0" maxHeight="30.0" prefHeight="100.0" prefWidth="200.0">
+                                <VBox.margin>
+                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                </VBox.margin>
+                               <children>
+                                   <TextField fx:id="team8driver2name" maxHeight="120.0" maxWidth="130.0" promptText="Driver 2 name">
+                                       <font>
+                                           <Font name="Formula1 Display-Regular" size="12.0" />
+                                       </font>
+                                       <HBox.margin>
+                                           <Insets />
+                                       </HBox.margin>
+                                   </TextField>
+                                   <VBox prefHeight="200.0" prefWidth="250.0">
+                                       <HBox.margin>
+                                           <Insets left="5.0" />
+                                       </HBox.margin>
+                                      <children>
+                                          <Slider fx:id="team8driver2slider1" max="1.0" />
+                                          <Slider fx:id="team8driver2slider2" max="1.0" />
+                                      </children>
+                                   </VBox>
+                               </children>
+                            </HBox>
+                        </children>
+                     </VBox>
+                 </content>
+               <font>
+                  <Font name="Formula1 Display-Regular" size="12.0" />
+               </font>
+              </TitledPane>
+              <TitledPane fx:id="titled9" expanded="false" text="Team 9">
+                 <content>
+                     <VBox minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                        <children>
+                            <TextField fx:id="team9name" layoutY="2.0" promptText="Team Tag">
+                                <font>
+                                    <Font name="Formula1 Display-Regular" size="12.0" />
+                                </font>
+                                <VBox.margin>
+                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                </VBox.margin>
+                            </TextField>
+                            <ColorPicker fx:id="team9color" prefHeight="25.0" prefWidth="390.0">
+                                <VBox.margin>
+                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                </VBox.margin>
+                            </ColorPicker>
+                            <HBox maxHeight="30.0" prefHeight="100.0" prefWidth="200.0">
+                                <VBox.margin>
+                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                </VBox.margin>
+                               <children>
+                                   <TextField fx:id="team9driver1name" maxHeight="120.0" maxWidth="130.0" promptText="Driver 1 name">
+                                       <HBox.margin>
+                                           <Insets />
+                                       </HBox.margin>
+                                       <font>
+                                           <Font name="Formula1 Display-Regular" size="12.0" />
+                                       </font>
+                                   </TextField>
+                                   <VBox prefHeight="200.0" prefWidth="250.0">
+                                       <HBox.margin>
+                                           <Insets left="5.0" />
+                                       </HBox.margin>
+                                      <children>
+                                          <Slider fx:id="team9driver1slider1" max="1.0" />
+                                          <Slider fx:id="team9driver1slider2" max="1.0" />
+                                      </children>
+                                   </VBox>
+                               </children>
+                            </HBox>
+                            <HBox layoutX="25.0" layoutY="91.0" maxHeight="30.0" prefHeight="100.0" prefWidth="200.0">
+                                <VBox.margin>
+                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                </VBox.margin>
+                               <children>
+                                   <TextField fx:id="team9driver2name" maxHeight="120.0" maxWidth="130.0" promptText="Driver 2 name">
+                                       <font>
+                                           <Font name="Formula1 Display-Regular" size="12.0" />
+                                       </font>
+                                       <HBox.margin>
+                                           <Insets />
+                                       </HBox.margin>
+                                   </TextField>
+                                   <VBox prefHeight="200.0" prefWidth="250.0">
+                                       <HBox.margin>
+                                           <Insets left="5.0" />
+                                       </HBox.margin>
+                                      <children>
+                                          <Slider fx:id="team9driver2slider1" max="1.0" />
+                                          <Slider fx:id="team9driver2slider2" max="1.0" />
+                                      </children>
+                                   </VBox>
+                               </children>
+                            </HBox>
+                        </children>
+                     </VBox>
+                 </content>
+               <font>
+                  <Font name="Formula1 Display-Regular" size="12.0" />
+               </font>
+              </TitledPane>
+              <TitledPane fx:id="titled10" expanded="false" text="Team 10">
+                 <content>
+                     <VBox minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                        <children>
+                            <TextField fx:id="team10name" layoutY="2.0" promptText="Team Tag">
+                                <font>
+                                    <Font name="Formula1 Display-Regular" size="12.0" />
+                                </font>
+                                <VBox.margin>
+                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                </VBox.margin>
+                            </TextField>
+                            <ColorPicker fx:id="team10color" prefHeight="25.0" prefWidth="390.0">
+                                <VBox.margin>
+                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                </VBox.margin>
+                            </ColorPicker>
+                            <HBox maxHeight="30.0" prefHeight="100.0" prefWidth="200.0">
+                                <VBox.margin>
+                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                </VBox.margin>
+                               <children>
+                                   <TextField fx:id="team10driver1name" maxHeight="120.0" maxWidth="130.0" promptText="Driver 1 name">
+                                       <HBox.margin>
+                                           <Insets />
+                                       </HBox.margin>
+                                       <font>
+                                           <Font name="Formula1 Display-Regular" size="12.0" />
+                                       </font>
+                                   </TextField>
+                                   <VBox prefHeight="200.0" prefWidth="250.0">
+                                       <HBox.margin>
+                                           <Insets left="5.0" />
+                                       </HBox.margin>
+                                      <children>
+                                          <Slider fx:id="team10driver1slider1" max="1.0" />
+                                          <Slider fx:id="team10driver1slider2" max="1.0" />
+                                      </children>
+                                   </VBox>
+                               </children>
+                            </HBox>
+                            <HBox layoutX="25.0" layoutY="91.0" maxHeight="30.0" prefHeight="100.0" prefWidth="200.0">
+                                <VBox.margin>
+                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                </VBox.margin>
+                               <children>
+                                   <TextField fx:id="team10driver2name" maxHeight="120.0" maxWidth="130.0" promptText="Driver 2 name">
+                                       <font>
+                                           <Font name="Formula1 Display-Regular" size="12.0" />
+                                       </font>
+                                       <HBox.margin>
+                                           <Insets />
+                                       </HBox.margin>
+                                   </TextField>
+                                   <VBox prefHeight="200.0" prefWidth="250.0">
+                                       <HBox.margin>
+                                           <Insets left="5.0" />
+                                       </HBox.margin>
+                                      <children>
+                                          <Slider fx:id="team10driver2slider1" max="1.0" />
+                                          <Slider fx:id="team10driver2slider2" max="1.0" />
+                                      </children>
+                                   </VBox>
+                               </children>
+                            </HBox>
+                        </children>
+                     </VBox>
+                 </content>
+               <font>
+                  <Font name="Formula1 Display-Regular" size="12.0" />
+               </font>
+              </TitledPane>
+          </children>
+       </VBox>
+   </items>
+</SplitPane>
