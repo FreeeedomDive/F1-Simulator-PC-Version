@@ -1,6 +1,7 @@
 package app;
 
 import app.ChampionshipClasses.Championship;
+import app.ChampionshipClasses.Driver;
 import app.Tracks.AllTracksInfo;
 import app.Tracks.Track;
 import javafx.application.Platform;
@@ -9,6 +10,8 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Label;
@@ -19,6 +22,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Paint;
 import javafx.scene.text.Font;
+import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
@@ -36,7 +40,7 @@ public class RaceActivityController implements Initializable {
     GraphicsContext graphicsContext;
     private ObservableList<RaceDriver> driversList;
     Track track;
-    int timeToNextStart = 600;
+    int timeToNextStart = 0;
     int totalLaps;
     int currentLap = 0;
     int racersFinished = 0;
@@ -46,11 +50,13 @@ public class RaceActivityController implements Initializable {
     int crashID;
     int poorTyresBorder = 35;
 
+    private Championship championship;
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         graphicsContext = canvas.getGraphicsContext2D();
-        Championship championship = Championship.getInstance();
-        track = new AllTracksInfo().getTracks().get(8);
+        championship = Championship.getInstance();
+        track = new AllTracksInfo().getTracks().get(5);
         driversList = FXCollections.observableArrayList();
         for (int i = 0; i < championship.drivers.length; i++) {
             var driver = championship.drivers[i];
@@ -61,7 +67,7 @@ public class RaceActivityController implements Initializable {
         listView.setCellFactory(e -> new RaceListElement());
 
         crashID = (int) (Math.random() * crashValue + 1);
-        totalLaps = 30;
+        totalLaps = 10 * 60 * 1000 / track.raceTime;
         startRace();
 
         Timer updater = new Timer(true);
@@ -76,7 +82,9 @@ public class RaceActivityController implements Initializable {
                         graphicsContext.fillRect(0, 0, canvas.getWidth(), canvas.getHeight());
                         for (int i = driversList.size() - 1; i >= 0; i--) {
                             var driver = driversList.get(i);
-                            if (driver.finished)
+                            if (!driver.crashed && driver.finished)
+                                continue;
+                            if (driver.crashed && driver.currentLap != currentLap)
                                 continue;
                             graphicsContext.setFill(Paint.valueOf(driver.color));
                             var size = 30;
@@ -84,7 +92,7 @@ public class RaceActivityController implements Initializable {
                             y = (double) (i) / (driversList.size()) * (canvas.getHeight() - size / 2);
                             if (driver.timeOnPit != 0 && driver.lapTime > (driver.futureLap - driver.timeOnPit) && driver.lapTime < driver.futureLap) {
                                 x = canvas.getWidth() - size;
-                                graphicsContext.fillText("PIT", x, y, 10);
+                                graphicsContext.fillText("PIT", x, y, 7);
                             } else {
                                 x = ((double) (driver.lapTime) / (driver.futureLap - driver.timeOnPit)) * (canvas.getWidth() - size);
                             }
@@ -159,7 +167,6 @@ public class RaceActivityController implements Initializable {
                 pitChance = 1;
             else
                 pitChance = 100 - driver.getTyresState();
-            System.out.println(driver.name + " has " + pitChance + "% chance of pit");
             int pitDecider = (int) (Math.random() * 135);
             if (pitDecider < pitChance && driver.currentLap < totalLaps)
                 driver.timeOnPit = (int) (Math.random() * 5000 + 12000);
@@ -232,9 +239,119 @@ public class RaceActivityController implements Initializable {
 
         if (racersFinished == driversList.size()) {
             ended = true;
-            //saveToStatistic
+            System.out.println("End");
+            TimerTask task = new TimerTask() {
+                @Override
+                public void run() {
+                    Platform.runLater(() -> {
+                        setStatisticsToChampionship();
+                        openMenu();
+                    });
+                }
+            };
+            Timer timer = new Timer(true);
+            timer.schedule(task, 3000);
+        }
+    }
+
+
+    private void setStatisticsToChampionship() {
+
+        for (var rDriver : driversList) {
+            for (var driver : championship.drivers) {
+                if (driver.name.equals(rDriver.name)) {
+                    driver.totalRaces++;
+                    driver.summaryPositions += rDriver.position;
+                }
+            }
         }
 
+        addPointsToDriver(driversList.get(0), 25);
+        addPointsToDriver(driversList.get(1), 18);
+        addPointsToDriver(driversList.get(2), 15);
+        addPointsToDriver(driversList.get(3), 12);
+        addPointsToDriver(driversList.get(4), 10);
+        addPointsToDriver(driversList.get(5), 8);
+        addPointsToDriver(driversList.get(6), 6);
+        addPointsToDriver(driversList.get(7), 4);
+        addPointsToDriver(driversList.get(8), 2);
+        addPointsToDriver(driversList.get(9), 1);
+
+        for (var i = 0; i < 10; i++) {
+            if (driversList.get(i).hasBestLapTime) {
+                for (var driver : championship.drivers) {
+                    if (driver.name.equals(driversList.get(i).name)) {
+                        driver.bestLaps++;
+                    }
+                }
+                addPointsToDriver(driversList.get(i), 1);
+                break;
+            }
+        }
+
+        for (var driver : championship.drivers) {
+            if (driver.name.equals(driversList.get(0).name)) {
+                driver.wins++;
+                break;
+            }
+        }
+
+        for (var driver : championship.drivers) {
+            if (driver.name.equals(driversList.get(0).name) ||
+                    driver.name.equals(driversList.get(1).name) ||
+                    driver.name.equals(driversList.get(2).name))
+                driver.podiums++;
+        }
+
+        for (int i = 0; i < 20; i++) {
+            if (driversList.get(i).crashed) {
+                for (var driver : championship.drivers) {
+                    if (driver.name.equals(driversList.get(i).name)) {
+                        driver.retires++;
+                    }
+                }
+            }
+        }
+
+        for (var rDriver : driversList) {
+            for (var driver : championship.drivers) {
+                if (rDriver.name.equals(driver.name)) {
+                    if (rDriver.position < driver.highestRacePosition) {
+                        driver.highestRacePosition = rDriver.position;
+                        driver.highestRacePositionReached = 1;
+                    }
+                    else if (rDriver.position == driver.highestRacePosition) {
+                        driver.highestRacePositionReached++;
+                    }
+                }
+            }
+        }
+
+        championship.saveChampionship();
+    }
+
+    private void addPointsToDriver(RaceDriver rDriver, int points) {
+        for (var driver : championship.drivers) {
+            if (driver.name.equals(rDriver.name))
+                driver.points += points;
+        }
+    }
+
+    private void openMenu(){
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("fxml/mainmenu.fxml"));
+            Parent parent = fxmlLoader.load();
+
+            Scene scene = new Scene(parent, 900, 600);
+            Stage stage = new Stage();
+            stage.setScene(scene);
+            stage.setTitle("Main menu");
+            stage.show();
+            Stage current = (Stage) listView.getScene().getWindow();
+            current.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     private void finishLap(final RaceDriver driver) {

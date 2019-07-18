@@ -1,6 +1,7 @@
 package app;
 
 import app.ChampionshipClasses.Championship;
+import app.ChampionshipClasses.Comparators;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Rectangle2D;
@@ -13,6 +14,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.Arrays;
 import java.util.ResourceBundle;
 
 public class MainMenuController implements Initializable {
@@ -33,6 +35,13 @@ public class MainMenuController implements Initializable {
         settingsButton.setImage(new Image("Images/settings.png"));
         settingsButton.setPreserveRatio(true);
         var championship = Championship.getInstance();
+        Arrays.sort(championship.drivers, new Comparators.PointsComparator());
+        StringBuilder builder = new StringBuilder();
+        for (int i = 0; i < championship.drivers.length; i++) {
+            //builder.append(i + 1).append(".\t").append(championship.drivers[i].name).append("\t\t\t").append(championship.drivers[i].points).append(" pts\n");
+            System.out.println((i+1) + ". " + championship.drivers[i]);
+        }
+        System.out.println(builder.toString());
     }
 
     private void zoom(ImageView imageView, double scale){

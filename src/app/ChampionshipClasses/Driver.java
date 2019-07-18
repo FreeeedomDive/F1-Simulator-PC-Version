@@ -2,7 +2,7 @@ package app.ChampionshipClasses;
 
 import app.Tracks.AllTracksInfo;
 
-public class Driver {
+public class Driver implements Comparable {
 
     final public String name;
     final public String shortName;
@@ -63,12 +63,12 @@ public class Driver {
     }
 
     @Override
-    public String toString() {
-        StringBuilder sb = new StringBuilder();
-        sb.append(this.name).append(" ").append(this.team).append(" ").append(this.teamColor).append(" ");
-        sb.append(this.isFirstDriver ? "First" : "Second").append(" ");
-        sb.append(this.leftRatio).append(" ... ").append(this.rightRatio);
-        return sb.toString();
+    public String toString(){
+        return this.name + " Points: " + this.points + " Highest position: " + this.highestRacePosition + " reached " + this.highestRacePositionReached + " times";
     }
 
+    @Override
+    public int compareTo(Object o) {
+        return 0;
+    }
 }

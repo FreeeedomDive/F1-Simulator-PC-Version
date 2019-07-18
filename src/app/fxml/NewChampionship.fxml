@@ -62,6 +62,22 @@
                   <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                </VBox.margin>
             </Button>
+            <Button fx:id="equalCarsButton" mnemonicParsing="false" onAction="#makeCarsEqual" prefWidth="165.0" text="Equal cars">
+               <VBox.margin>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="40.0" />
+               </VBox.margin>
+               <font>
+                  <Font name="Formula1 Display-Regular" size="12.0" />
+               </font>
+            </Button>
+            <Button fx:id="randomCarsButton" mnemonicParsing="false" onAction="#makeCarsRandom" prefWidth="165.0" text="Random cars">
+               <VBox.margin>
+                  <Insets bottom="20.0" left="5.0" right="5.0" top="5.0" />
+               </VBox.margin>
+               <font>
+                  <Font name="Formula1 Display-Regular" size="12.0" />
+               </font>
+            </Button>
               <Button fx:id="champCreate" defaultButton="true" mnemonicParsing="false" onAction="#create" prefHeight="40.0" prefWidth="165.0" text="Create" textAlignment="CENTER">
                   <font>
                       <Font name="Formula1 Display-Regular" size="12.0" />

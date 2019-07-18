@@ -342,4 +342,22 @@ public class NewChampionshipController implements Initializable {
     public SavedChampionship getCreatedChampionship() {
         return champ;
     }
+
+    public void makeCarsEqual(ActionEvent actionEvent) {
+        for (var i = 0; i < teamDriver1Sliders1.length; i++) {
+            teamDriver1Sliders1[i].setValue(teamDriver1Sliders1[i].getMin());
+            teamDriver1Sliders2[i].setValue(teamDriver1Sliders2[i].getMax());
+            teamDriver2Sliders1[i].setValue(teamDriver2Sliders1[i].getMin());
+            teamDriver2Sliders2[i].setValue(teamDriver2Sliders2[i].getMax());
+        }
+    }
+
+    public void makeCarsRandom(ActionEvent actionEvent) {
+        for (var i = 0; i < teamDriver1Sliders1.length; i++) {
+            teamDriver1Sliders1[i].setValue(Math.random());
+            teamDriver1Sliders2[i].setValue(Math.random());
+            teamDriver2Sliders1[i].setValue(Math.random());
+            teamDriver2Sliders2[i].setValue(Math.random());
+        }
+    }
 }
