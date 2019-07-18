@@ -73,13 +73,14 @@ public class MainMenuController implements Initializable {
 
     public void singleClick(MouseEvent mouseEvent) {
         try{
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("fxml/RaceActivity.fxml"));
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("fxml/SelectingRace.fxml"));
             Parent parent = fxmlLoader.load();
 
-            Scene scene = new Scene(parent, 802, 752);
+            //Scene scene = new Scene(parent, 802, 752);
+            Scene scene = new Scene(parent, 610, 400);
             Stage stage = new Stage();
             stage.setScene(scene);
-            stage.setTitle("Race");
+            stage.setTitle("Select");
             stage.show();
             Stage current = (Stage) singleRaceButton.getScene().getWindow();
             current.close();

@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="610.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.SelectingRaceController">
+   <left>
+      <ListView fx:id="tracksListView" prefWidth="201.0" BorderPane.alignment="CENTER" />
+   </left>
+   <center>
+      <VBox prefWidth="200.0" BorderPane.alignment="CENTER">
+         <children>
+            <Label alignment="CENTER" prefHeight="50.0" prefWidth="200.0" text="Starting grid">
+               <font>
+                  <Font name="Formula1 Display-Bold Bold" size="20.0" />
+               </font>
+            </Label>
+            <RadioButton fx:id="gridStandings" mnemonicParsing="false" onAction="#selectStandings" prefHeight="20.0" prefWidth="200.0" selected="true" text="Championship standings">
+               <font>
+                  <Font name="Formula1 Display-Regular" size="12.0" />
+               </font>
+            </RadioButton>
+            <RadioButton fx:id="gridReversed" mnemonicParsing="false" onAction="#selectReversed" prefHeight="20.0" prefWidth="200.0" text="Reversed standings">
+               <font>
+                  <Font name="Formula1 Display-Regular" size="12.0" />
+               </font>
+            </RadioButton>
+            <RadioButton fx:id="gridRandom" mnemonicParsing="false" onAction="#selectRandom" prefHeight="20.0" prefWidth="200.0" text="Random">
+               <font>
+                  <Font name="Formula1 Display-Regular" size="12.0" />
+               </font>
+            </RadioButton>
+            <RadioButton fx:id="gridQual" mnemonicParsing="false" onAction="#selectQualification" prefHeight="20.0" prefWidth="200.0" text="Qualification">
+               <font>
+                  <Font name="Formula1 Display-Regular" size="12.0" />
+               </font>
+            </RadioButton>
+            <RadioButton fx:id="gridCustom" mnemonicParsing="false" onAction="#selectCustom" prefHeight="20.0" prefWidth="200.0" text="Custom">
+               <font>
+                  <Font name="Formula1 Display-Regular" size="12.0" />
+               </font>
+            </RadioButton>
+            <Button fx:id="customButton" alignment="CENTER" mnemonicParsing="false" onAction="#customGrid" prefWidth="150.0" text="Configure grid" visible="false">
+               <font>
+                  <Font name="Formula1 Display-Regular" size="12.0" />
+               </font>
+               <VBox.margin>
+                  <Insets left="25.0" right="25.0" top="20.0" />
+               </VBox.margin>
+            </Button>
+         </children>
+         <BorderPane.margin>
+            <Insets left="5.0" right="5.0" />
+         </BorderPane.margin>
+      </VBox>
+   </center>
+   <right>
+      <VBox prefWidth="200.0" BorderPane.alignment="CENTER">
+         <children>
+            <Label alignment="CENTER" prefHeight="30.0" prefWidth="200.0" text="Overall">
+               <VBox.margin>
+                  <Insets bottom="15.0" />
+               </VBox.margin>
+               <font>
+                  <Font name="Formula1 Display-Bold Bold" size="25.0" />
+               </font>
+            </Label>
+            <Label alignment="CENTER" prefHeight="30.0" prefWidth="200.0" text="Selected race">
+               <font>
+                  <Font name="Formula1 Display-Bold Bold" size="15.0" />
+               </font>
+            </Label>
+            <Label fx:id="selectedRaceLabel" alignment="CENTER" prefHeight="20.0" prefWidth="200.0" text="Track is not selected">
+               <font>
+                  <Font name="Formula1 Display-Regular" size="12.0" />
+               </font>
+            </Label>
+            <Label alignment="CENTER" prefHeight="30.0" prefWidth="200.0" text="Grid">
+               <font>
+                  <Font name="Formula1 Display-Bold Bold" size="15.0" />
+               </font>
+               <VBox.margin>
+                  <Insets top="10.0" />
+               </VBox.margin>
+            </Label>
+            <Label fx:id="gridLabel" alignment="CENTER" prefHeight="20.0" prefWidth="200.0" text="Championship standings">
+               <font>
+                  <Font name="Formula1 Display-Regular" size="12.0" />
+               </font>
+            </Label>
+            <Label alignment="CENTER" prefHeight="30.0" prefWidth="200.0" text="Qualification">
+               <VBox.margin>
+                  <Insets top="10.0" />
+               </VBox.margin>
+               <font>
+                  <Font name="Formula1 Display-Bold Bold" size="15.0" />
+               </font>
+            </Label>
+            <Label fx:id="qualificationLabel" alignment="CENTER" prefHeight="20.0" prefWidth="200.0" text="None">
+               <font>
+                  <Font name="Formula1 Display-Regular" size="12.0" />
+               </font>
+            </Label>
+            <Label alignment="CENTER" prefHeight="30.0" prefWidth="200.0" text="Race">
+               <VBox.margin>
+                  <Insets top="10.0" />
+               </VBox.margin>
+               <font>
+                  <Font name="Formula1 Display-Bold Bold" size="15.0" />
+               </font>
+            </Label>
+            <Label fx:id="raceLabel" alignment="CENTER" prefHeight="20.0" prefWidth="200.0" text="*from settings*">
+               <font>
+                  <Font name="Formula1 Display-Regular" size="12.0" />
+               </font>
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+            </Label>
+            <Button fx:id="startButton" alignment="CENTER" defaultButton="true" mnemonicParsing="false" onAction="#startWeekend" prefHeight="30.0" prefWidth="170.0" text="Start weekend">
+               <VBox.margin>
+                  <Insets left="15.0" right="15.0" top="90.0" />
+               </VBox.margin>
+               <font>
+                  <Font name="Formula1 Display-Bold Bold" size="15.0" />
+               </font>
+            </Button>
+         </children>
+      </VBox>
+   </right>
+</BorderPane>

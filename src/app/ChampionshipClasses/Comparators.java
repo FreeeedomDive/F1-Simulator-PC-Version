@@ -12,6 +12,14 @@ public class Comparators {
         }
     }
 
+    public static class RandomComparator implements Comparator<Driver>{
+
+        @Override
+        public int compare(Driver o1, Driver o2) {
+            return (int) Math.round(Math.random() * 3 - 1.5);
+        }
+    }
+
     public static class PointsComparator implements Comparator<Driver>{
 
         @Override
