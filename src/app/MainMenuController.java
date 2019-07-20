@@ -47,6 +47,7 @@ public class MainMenuController implements Initializable {
     }
 
     private void createOrLoadSettings() {
+        currentChampionship.settings.createDirectotyIfNotExists();
         if (currentChampionship.settings.isSettingsExist())
             currentChampionship.settings.getFromFile();
         else {

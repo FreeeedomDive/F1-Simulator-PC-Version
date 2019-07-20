@@ -47,6 +47,13 @@ public class Settings {
         }
     }
 
+    public void createDirectotyIfNotExists(){
+        File file = new File("Settings");
+        if (!file.exists()) {
+            file.mkdir();
+        }
+    }
+
     public boolean isSettingsExist(){
         File temp = new File("Settings/settings");
         return temp.exists();
