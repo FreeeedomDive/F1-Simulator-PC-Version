@@ -40,7 +40,7 @@ public class RaceActivityController implements Initializable {
     GraphicsContext graphicsContext;
     private ObservableList<RaceDriver> driversList;
     Track track;
-    int timeToNextStart = 0;
+    int timeToNextStart = 1000;
     int totalLaps;
     int currentLap = 0;
     int racersFinished = 0;
@@ -52,22 +52,28 @@ public class RaceActivityController implements Initializable {
 
     private Championship championship;
 
+    public void setTrack(Track tr){
+        track = tr;
+        totalLaps = 25 * 60 * 1000 / track.raceTime;
+    }
+
+    public void setDrivers(Driver[] drivers){
+        for (int i = 0; i < drivers.length; i++) {
+            var driver = drivers[i];
+            driversList.add(new RaceDriver(driver.name, driver.teamColor, track.raceTime * driver.leftRatio, track.raceTime * driver.rightRatio));
+            driversList.get(i).position = i + 1;
+        }
+    }
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         graphicsContext = canvas.getGraphicsContext2D();
         championship = Championship.getInstance();
-        track = new AllTracksInfo().getTracks().get(5);
         driversList = FXCollections.observableArrayList();
-        for (int i = 0; i < championship.drivers.length; i++) {
-            var driver = championship.drivers[i];
-            driversList.add(new RaceDriver(driver.name, driver.teamColor, track.raceTime * driver.leftRatio, track.raceTime * driver.rightRatio));
-            driversList.get(i).position = i + 1;
-        }
         listView.setItems(driversList);
         listView.setCellFactory(e -> new RaceListElement());
 
         crashID = (int) (Math.random() * crashValue + 1);
-        totalLaps = 10 * 60 * 1000 / track.raceTime;
         startRace();
 
         Timer updater = new Timer(true);
@@ -240,6 +246,7 @@ public class RaceActivityController implements Initializable {
         if (racersFinished == driversList.size()) {
             ended = true;
             System.out.println("End");
+            System.out.println(RaceDriver.generateTime(driversList.get(0).totalTime));
             TimerTask task = new TimerTask() {
                 @Override
                 public void run() {

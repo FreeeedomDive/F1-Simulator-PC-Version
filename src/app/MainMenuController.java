@@ -75,8 +75,6 @@ public class MainMenuController implements Initializable {
         try{
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("fxml/SelectingRace.fxml"));
             Parent parent = fxmlLoader.load();
-
-            //Scene scene = new Scene(parent, 802, 752);
             Scene scene = new Scene(parent, 610, 400);
             Stage stage = new Stage();
             stage.setScene(scene);
