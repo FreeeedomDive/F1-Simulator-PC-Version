@@ -545,11 +545,7 @@ public class RaceActivityController implements Initializable {
                     tyresLabel.setTextFill(Paint.valueOf("ffffff"));
                 tyresLabel.setText(driver.getTyresState() + "%");
             }
-            if (driver.crashed) {
-                positionLabel.setStyle("-fx-background-color: #333333; ");
-                lastLapLabel.setText("NO TIME");
-                bestLapLabel.setText("NO TIME");
-            } else if (driver.currentLap <= 1) {
+            if (driver.currentLap <= 1) {
                 lastLapLabel.setText("NO TIME");
                 bestLapLabel.setText("NO TIME");
                 positionLabel.setStyle("-fx-background-color: #ffffff; ");
@@ -578,6 +574,7 @@ public class RaceActivityController implements Initializable {
             }
 
             setText(null);
+
             setGraphic(mainBox);
         }
     }
