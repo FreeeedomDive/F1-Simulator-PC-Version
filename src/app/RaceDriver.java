@@ -95,7 +95,7 @@ public class RaceDriver implements Comparable {
         if (!(o instanceof RaceDriver))
             return -1;
         RaceDriver driver = (RaceDriver) o;
-        if (this.passed > 0.03 && driver.passed > 0.03)
+        if (this.passed > 0.03 || driver.passed > 0.03)
             return -Double.compare(this.passed, driver.passed);
         else return 0;
     }

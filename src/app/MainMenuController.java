@@ -77,6 +77,7 @@ public class MainMenuController implements Initializable {
             Parent parent = fxmlLoader.load();
             Scene scene = new Scene(parent, 610, 400);
             Stage stage = new Stage();
+            stage.setResizable(false);
             stage.setScene(scene);
             stage.setTitle("Select");
             stage.show();

@@ -52,12 +52,12 @@ public class RaceActivityController implements Initializable {
 
     private Championship championship;
 
-    public void setTrack(Track tr){
+    public void setTrack(Track tr) {
         track = tr;
         totalLaps = 25 * 60 * 1000 / track.raceTime;
     }
 
-    public void setDrivers(Driver[] drivers){
+    public void setDrivers(Driver[] drivers) {
         for (int i = 0; i < drivers.length; i++) {
             var driver = drivers[i];
             driversList.add(new RaceDriver(driver.name, driver.teamColor, track.raceTime * driver.leftRatio, track.raceTime * driver.rightRatio));
@@ -326,8 +326,7 @@ public class RaceActivityController implements Initializable {
                     if (rDriver.position < driver.highestRacePosition) {
                         driver.highestRacePosition = rDriver.position;
                         driver.highestRacePositionReached = 1;
-                    }
-                    else if (rDriver.position == driver.highestRacePosition) {
+                    } else if (rDriver.position == driver.highestRacePosition) {
                         driver.highestRacePositionReached++;
                     }
                 }
@@ -344,7 +343,7 @@ public class RaceActivityController implements Initializable {
         }
     }
 
-    private void openMenu(){
+    private void openMenu() {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("fxml/mainmenu.fxml"));
             Parent parent = fxmlLoader.load();
@@ -476,11 +475,13 @@ public class RaceActivityController implements Initializable {
                 tipsSetted = true;
             }
             setStyle("-fx-padding: 0px");
-            positionLabel.setTextFill(Paint.valueOf("#000000"));
-            if (!driver.crashed)
+            if (!driver.crashed) {
+                positionLabel.setTextFill(Paint.valueOf("#000000"));
                 positionLabel.setText(String.valueOf(driver.position));
-            else
+            } else {
+                positionLabel.setTextFill(Paint.valueOf("#333333"));
                 positionLabel.setText("");
+            }
             colorLabel.setStyle(String.format("-fx-background-color: %s; ", driver.color));
             nameLabel.setText(driver.shortName);
             lapLabel.setText(String.valueOf(driver.currentLap));

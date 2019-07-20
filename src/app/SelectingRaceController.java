@@ -77,13 +77,14 @@ public class SelectingRaceController implements Initializable {
     public void selectRandom(ActionEvent actionEvent) {
         customButton.setVisible(false);
         gridLabel.setText(gridRandom.getText());
+        System.arraycopy(championship.drivers, 0, drivers, 0, drivers.length);
+        Arrays.sort(drivers, new Comparators.RandomComparator());
     }
 
     public void selectQualification(ActionEvent actionEvent) {
         customButton.setVisible(false);
         gridLabel.setText(qualificationLabel.getText());
         System.arraycopy(championship.drivers, 0, drivers, 0, drivers.length);
-        Arrays.sort(drivers, new Comparators.RandomComparator());
     }
 
     public void selectCustom(ActionEvent actionEvent) {
@@ -107,6 +108,7 @@ public class SelectingRaceController implements Initializable {
             controller.setDrivers(drivers);
             Scene scene = new Scene(parent, 802, 752);
             Stage stage = new Stage();
+            stage.setResizable(false);
             stage.setScene(scene);
             stage.setTitle("Select");
             stage.show();
