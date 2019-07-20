@@ -1,7 +1,8 @@
 package app;
 
-import app.ChampionshipClasses.Championship;
-import app.ChampionshipClasses.Comparators;
+import app.GlobalClasses.Championship;
+import app.GlobalClasses.Comparators;
+import app.GlobalClasses.Settings;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Rectangle2D;
@@ -10,6 +11,7 @@ import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -34,17 +36,34 @@ public class MainMenuController implements Initializable {
         seasonButton.setPreserveRatio(true);
         settingsButton.setImage(new Image("Images/settings.png"));
         settingsButton.setPreserveRatio(true);
-        var championship = Championship.getInstance();
-        Arrays.sort(championship.drivers, new Comparators.PointsComparator());
+        currentChampionship = Championship.getInstance();
+        Arrays.sort(currentChampionship.drivers, new Comparators.PointsComparator());
         StringBuilder builder = new StringBuilder();
-        for (int i = 0; i < championship.drivers.length; i++) {
-            //builder.append(i + 1).append(".\t").append(championship.drivers[i].name).append("\t\t\t").append(championship.drivers[i].points).append(" pts\n");
-            System.out.println((i+1) + ". " + championship.drivers[i]);
+        for (int i = 0; i < currentChampionship.drivers.length; i++) {
+            System.out.println((i + 1) + ". " + currentChampionship.drivers[i]);
         }
         System.out.println(builder.toString());
+        createOrLoadSettings();
     }
 
-    private void zoom(ImageView imageView, double scale){
+    private void createOrLoadSettings() {
+        if (currentChampionship.settings.isSettingsExist())
+            currentChampionship.settings.getFromFile();
+        else {
+            var settings = new Settings();
+            settings.realisticLaps = false;
+            settings.raceLength = 30;
+            settings.qualificationType = Settings.QualificationType.OneRound;
+            settings.q1Length = 10;
+            settings.q2Length = 7;
+            settings.q3Length = 3;
+            settings.qualificationPriority = 750;
+            settings.saveToFile();
+            currentChampionship.settings = settings;
+        }
+    }
+
+    private void zoom(ImageView imageView, double scale) {
         imageView.scaleXProperty().set(scale);
         imageView.scaleYProperty().set(scale);
         Rectangle2D viewpoint = new Rectangle2D(0, 0, imageButtonWidth, imageButtonHeight);
@@ -52,27 +71,33 @@ public class MainMenuController implements Initializable {
     }
 
     private static double zoom = 1.02;
+
     public void singleZoomIn(MouseEvent mouseEvent) {
         zoom(singleRaceButton, zoom);
     }
+
     public void singleZoomOut(MouseEvent mouseEvent) {
         zoom(singleRaceButton, 1);
     }
+
     public void seasonZoomIn(MouseEvent mouseEvent) {
         zoom(seasonButton, zoom);
     }
+
     public void seasonZoomOut(MouseEvent mouseEvent) {
         zoom(seasonButton, 1);
     }
+
     public void settingsZoomIn(MouseEvent mouseEvent) {
         zoom(settingsButton, zoom);
     }
+
     public void settingsZoomOut(MouseEvent mouseEvent) {
         zoom(settingsButton, 1);
     }
 
     public void singleClick(MouseEvent mouseEvent) {
-        try{
+        try {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("fxml/SelectingRace.fxml"));
             Parent parent = fxmlLoader.load();
             Scene scene = new Scene(parent, 610, 400);
@@ -94,6 +119,21 @@ public class MainMenuController implements Initializable {
     }
 
     public void settingsClick(MouseEvent mouseEvent) {
-        System.out.println("Settings");
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("fxml/Settings.fxml"));
+            Parent root = loader.load();
+            Stage stage = new Stage();
+            stage.setTitle("Settings");
+            stage.setScene(new Scene(root, 300, 550));
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.showAndWait();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        StringBuilder builder = new StringBuilder();
+        for (int i = 0; i < currentChampionship.drivers.length; i++) {
+            System.out.println((i + 1) + ". " + currentChampionship.drivers[i]);
+        }
+        System.out.println(builder.toString());
     }
 }

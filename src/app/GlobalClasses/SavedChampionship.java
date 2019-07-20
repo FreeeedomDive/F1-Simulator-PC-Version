@@ -1,4 +1,4 @@
-package app.ChampionshipClasses;
+package app.GlobalClasses;
 
 import java.io.File;
 import java.io.Serializable;
@@ -22,9 +22,6 @@ public class SavedChampionship implements Serializable {
 
     public void removeDriversData(){
         var file = new File(String.format("SavedChampionships/champ%s", this.id));
-        if(file.delete())
-            System.out.println(String.format("Deleted %s", this.id));
-        else
-            System.out.println("Not found");
+        file.delete();
     }
 }

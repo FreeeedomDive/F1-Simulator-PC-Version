@@ -1,4 +1,4 @@
-package app.ChampionshipClasses;
+package app.GlobalClasses;
 
 import java.util.Comparator;
 

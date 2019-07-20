@@ -1,8 +1,8 @@
 package app;
 
-import app.ChampionshipClasses.ActiveChampionships;
-import app.ChampionshipClasses.Championship;
-import app.ChampionshipClasses.SavedChampionship;
+import app.GlobalClasses.ActiveChampionships;
+import app.GlobalClasses.Championship;
+import app.GlobalClasses.SavedChampionship;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
@@ -10,8 +10,6 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.image.Image;
-import javafx.scene.layout.*;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 

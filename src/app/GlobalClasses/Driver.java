@@ -1,4 +1,4 @@
-package app.ChampionshipClasses;
+package app.GlobalClasses;
 
 import app.Tracks.AllTracksInfo;
 
@@ -48,7 +48,7 @@ public class Driver implements Comparable {
         this.rightRatio = rightRatio;
         this.highestQualPosition = 21;
         this.highestRacePosition = 21;
-        this.pointsPerRace = new int[new AllTracksInfo().getNumberOfTracks() + 1];
+        this.pointsPerRace = new int[AllTracksInfo.getNumberOfTracks() + 1];
     }
 
     public static Driver createDriverFromString(String string) {
@@ -60,6 +60,28 @@ public class Driver implements Comparable {
         var left = Double.parseDouble(data[4]);
         var right = Double.parseDouble(data[5]);
         return new Driver(name, team, color, first, left, right);
+    }
+
+    public void reset(){
+        this.points = 0;
+        this.oldPos = 0;
+        this.newPos = 0;
+        this.wins = 0;
+        this.poles = 0;
+        this.retires = 0;
+        this.totalRaces = 0;
+        this.summaryPositions = 0;
+        this.q2 = 0;
+        this.q3 = 0;
+        this.qualTeammateWins = 0;
+        this.raceTeammateWins = 0;
+        this.podiums = 0;
+        this.bestLaps = 0;
+        this.highestQualPosition = 21;
+        this.highestRacePosition = 21;
+        this.highestQualPositionReached = 0;
+        this.highestRacePositionReached = 0;
+        this.pointsPerRace = new int[AllTracksInfo.getNumberOfTracks() + 1];
     }
 
     @Override

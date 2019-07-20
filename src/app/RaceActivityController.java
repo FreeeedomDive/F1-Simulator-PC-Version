@@ -1,8 +1,7 @@
 package app;
 
-import app.ChampionshipClasses.Championship;
-import app.ChampionshipClasses.Driver;
-import app.Tracks.AllTracksInfo;
+import app.GlobalClasses.Championship;
+import app.GlobalClasses.Driver;
 import app.Tracks.Track;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
@@ -54,7 +53,12 @@ public class RaceActivityController implements Initializable {
 
     public void setTrack(Track tr) {
         track = tr;
-        totalLaps = 25 * 60 * 1000 / track.raceTime;
+        if (Championship.getInstance().settings.realisticLaps)
+            totalLaps = track.laps;
+        else {
+            var duration = Championship.getInstance().settings.raceLength;
+            totalLaps = duration * 60 * 1000 / track.raceTime;
+        }
     }
 
     public void setDrivers(Driver[] drivers) {
@@ -69,6 +73,7 @@ public class RaceActivityController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         graphicsContext = canvas.getGraphicsContext2D();
         championship = Championship.getInstance();
+        timeToNextStart = championship.settings.qualificationPriority;
         driversList = FXCollections.observableArrayList();
         listView.setItems(driversList);
         listView.setCellFactory(e -> new RaceListElement());
@@ -388,16 +393,11 @@ public class RaceActivityController implements Initializable {
             driver.currentLap++;
             Platform.runLater(() -> driversList.sort(RaceDriver::compareTo));
 
-            int position = -1;
             for (var d : driversList) {
                 d.position = driversList.indexOf(d) + 1;
-                if (d.equals(driver))
-                    position = driversList.indexOf(driver) + 1;
             }
 
-            if (position == 1) {
-                currentLap = driver.currentLap;
-            }
+            currentLap = driversList.get(0).currentLap;
         }
         if (driver.currentLap <= totalLaps && !finished)
             startLap(driver);
@@ -475,13 +475,11 @@ public class RaceActivityController implements Initializable {
                 tipsSetted = true;
             }
             setStyle("-fx-padding: 0px");
-            if (!driver.crashed) {
-                positionLabel.setTextFill(Paint.valueOf("#000000"));
+            positionLabel.setTextFill(Paint.valueOf("#000000"));
+            if (!driver.crashed)
                 positionLabel.setText(String.valueOf(driver.position));
-            } else {
-                positionLabel.setTextFill(Paint.valueOf("#333333"));
+            else
                 positionLabel.setText("");
-            }
             colorLabel.setStyle(String.format("-fx-background-color: %s; ", driver.color));
             nameLabel.setText(driver.shortName);
             lapLabel.setText(String.valueOf(driver.currentLap));
@@ -547,7 +545,11 @@ public class RaceActivityController implements Initializable {
                     tyresLabel.setTextFill(Paint.valueOf("ffffff"));
                 tyresLabel.setText(driver.getTyresState() + "%");
             }
-            if (driver.currentLap <= 1) {
+            if (driver.crashed) {
+                positionLabel.setStyle("-fx-background-color: #333333; ");
+                lastLapLabel.setText("NO TIME");
+                bestLapLabel.setText("NO TIME");
+            } else if (driver.currentLap <= 1) {
                 lastLapLabel.setText("NO TIME");
                 bestLapLabel.setText("NO TIME");
                 positionLabel.setStyle("-fx-background-color: #ffffff; ");
@@ -576,7 +578,6 @@ public class RaceActivityController implements Initializable {
             }
 
             setText(null);
-
             setGraphic(mainBox);
         }
     }

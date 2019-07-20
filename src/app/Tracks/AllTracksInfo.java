@@ -36,7 +36,9 @@ public class AllTracksInfo {
         return tracks;
     }
 
-    public int getNumberOfTracks() {
-        return tracks.size();
+    public static int getNumberOfTracks() {
+        if (numberOfTracks == 0)
+            getTracks();
+        return numberOfTracks;
     }
 }

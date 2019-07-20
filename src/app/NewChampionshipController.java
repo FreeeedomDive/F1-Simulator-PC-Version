@@ -1,8 +1,8 @@
 package app;
 
-import app.ChampionshipClasses.Championship;
-import app.ChampionshipClasses.Driver;
-import app.ChampionshipClasses.SavedChampionship;
+import app.GlobalClasses.Championship;
+import app.GlobalClasses.Driver;
+import app.GlobalClasses.SavedChampionship;
 import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;

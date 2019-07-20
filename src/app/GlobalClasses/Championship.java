@@ -1,4 +1,4 @@
-package app.ChampionshipClasses;
+package app.GlobalClasses;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -14,6 +14,7 @@ public class Championship implements Serializable {
     public String description;
     public Driver[] drivers;
     private static Championship INSTANCE = new Championship();
+    public Settings settings;
 
     private Championship() {
 
@@ -39,12 +40,14 @@ public class Championship implements Serializable {
     }
 
     public static void createDataForDrivers(int id, Driver[] drivers) {
+        INSTANCE.settings = new Settings();
         INSTANCE.id = id;
         INSTANCE.drivers = drivers;
         INSTANCE.saveChampionship();
     }
 
     public static Championship createExistedInstance(int id, String name, String description) {
+        INSTANCE.settings = new Settings();
         INSTANCE.id = id;
         INSTANCE.name = name;
         INSTANCE.description = description;
