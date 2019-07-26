@@ -95,6 +95,8 @@ public class RaceDriver implements Comparable {
         if (!(o instanceof RaceDriver))
             return -1;
         RaceDriver driver = (RaceDriver) o;
+        if (this.finished && !this.crashed && driver.finished && !driver.crashed)
+            return Integer.compare(this.totalTime, driver.totalTime);
         if (this.passed > 0.03 || driver.passed > 0.03)
             return -Double.compare(this.passed, driver.passed);
         else return 0;

@@ -6,6 +6,7 @@ import app.Tracks.Track;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
@@ -13,10 +14,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.control.Label;
-import javafx.scene.control.ListCell;
-import javafx.scene.control.ListView;
-import javafx.scene.control.Tooltip;
+import javafx.scene.control.*;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Paint;
@@ -36,6 +34,7 @@ public class RaceActivityController implements Initializable {
     public Label lights;
     public ListView<RaceDriver> listView;
     public Canvas canvas;
+    public Button standingsButton;
     GraphicsContext graphicsContext;
     private ObservableList<RaceDriver> driversList;
     Track track;
@@ -249,6 +248,22 @@ public class RaceActivityController implements Initializable {
     private void finishRace() {
 
         if (racersFinished == driversList.size()) {
+
+            System.out.println(driversList.get(0).totalTime);
+            if (driversList.get(0).totalTime >= 30 * 60 * 1000) {
+                System.out.println("Long race");
+                for (var driver : driversList) {
+                    if (!driver.crashed && driver.numberOfPits == 0) {
+                        System.out.println(driver.name + " didn't stopped and received a penalty");
+                        driver.totalTime += 15 * 1000;
+                    }
+                }
+                Platform.runLater(() -> {
+                    driversList.sort(RaceDriver::compareTo);
+                    listView.refresh();
+                });
+            }
+
             ended = true;
             System.out.println("End");
             System.out.println(RaceDriver.generateTime(driversList.get(0).totalTime));
@@ -350,7 +365,7 @@ public class RaceActivityController implements Initializable {
 
     private void openMenu() {
         try {
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("fxml/mainmenu.fxml"));
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("fxml/MainMenu.fxml"));
             Parent parent = fxmlLoader.load();
 
             Scene scene = new Scene(parent, 900, 600);
@@ -421,6 +436,11 @@ public class RaceActivityController implements Initializable {
             return crash == crashID;
         }
         return false;
+    }
+
+    public void showSettings(ActionEvent actionEvent) {
+        StandingsController standings = new StandingsController();
+        standings.start(new Stage());
     }
 
     public class RaceListElement extends ListCell<RaceDriver> {

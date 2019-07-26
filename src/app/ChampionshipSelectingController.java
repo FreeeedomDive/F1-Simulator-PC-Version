@@ -47,6 +47,8 @@ public class ChampionshipSelectingController implements Initializable {
             fis.close();
             oin.close();
         } catch (FileNotFoundException ex) {
+            File directory = new File("SavedChampionships");
+            directory.mkdir();
             champs = new ActiveChampionships();
             saveChamps();
         } catch (IOException | ClassNotFoundException e) {
@@ -104,7 +106,7 @@ public class ChampionshipSelectingController implements Initializable {
         try {
             Championship.createExistedInstance(championship.id, championship.name, championship.description);
 
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("fxml/mainmenu.fxml"));
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("fxml/MainMenu.fxml"));
             Parent parent = fxmlLoader.load();
 
             Scene scene = new Scene(parent, 900, 600);

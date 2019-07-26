@@ -2,7 +2,43 @@ package app.GlobalClasses;
 
 import app.Tracks.AllTracksInfo;
 
+import java.text.DecimalFormat;
+
 public class Driver implements Comparable {
+
+    public String getName() {
+        return name;
+    }
+
+    public int getPoints() {
+        return points;
+    }
+
+    public int getWins() {
+        return wins;
+    }
+
+    public int getRetires() {
+        return retires;
+    }
+
+    public int getPodiums() {
+        return podiums;
+    }
+
+    public int getBestLaps() {
+        return bestLaps;
+    }
+
+    public String getBalance() {
+        String pattern = "#.###";
+        DecimalFormat format = new DecimalFormat(pattern);
+        return format.format(leftRatio) + " ... " + format.format(rightRatio) + " (" + format.format((leftRatio + rightRatio) / 2) + ")";
+    }
+
+    public String getBestPlace() {
+        return highestRacePosition + " (" + highestRacePositionReached + "x)";
+    }
 
     final public String name;
     final public String shortName;
@@ -62,7 +98,7 @@ public class Driver implements Comparable {
         return new Driver(name, team, color, first, left, right);
     }
 
-    public void reset(){
+    public void reset() {
         this.points = 0;
         this.oldPos = 0;
         this.newPos = 0;
@@ -85,7 +121,7 @@ public class Driver implements Comparable {
     }
 
     @Override
-    public String toString(){
+    public String toString() {
         return this.name + " Points: " + this.points + " Highest position: " + this.highestRacePosition + " reached " + this.highestRacePositionReached + " times";
     }
 

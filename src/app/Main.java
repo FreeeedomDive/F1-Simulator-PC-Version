@@ -20,4 +20,8 @@ public class Main extends Application {
         stage.setTitle("Select championship");
         stage.show();
     }
+
+    public static void main(String[] args){
+        launch(args);
+    }
 }

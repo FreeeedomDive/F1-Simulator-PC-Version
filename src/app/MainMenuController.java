@@ -116,7 +116,8 @@ public class MainMenuController implements Initializable {
     }
 
     public void seasonClick(MouseEvent mouseEvent) {
-        System.out.println("Season");
+        StandingsController standings = new StandingsController();
+        standings.start(new Stage());
     }
 
     public void settingsClick(MouseEvent mouseEvent) {

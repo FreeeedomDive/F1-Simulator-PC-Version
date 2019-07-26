@@ -130,7 +130,7 @@ public class SelectingRaceController implements Initializable {
 
     public void openMenu(ActionEvent actionEvent) {
         try {
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("fxml/mainmenu.fxml"));
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("fxml/MainMenu.fxml"));
             Parent parent = fxmlLoader.load();
 
             Scene scene = new Scene(parent, 900, 600);
