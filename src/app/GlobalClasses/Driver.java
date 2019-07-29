@@ -37,6 +37,8 @@ public class Driver implements Comparable {
     }
 
     public String getBestPlace() {
+        if (totalRaces == 0)
+            return "---";
         return highestRacePosition + " (" + highestRacePositionReached + "x)";
     }
 

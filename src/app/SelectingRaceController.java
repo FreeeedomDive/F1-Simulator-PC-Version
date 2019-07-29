@@ -92,7 +92,7 @@ public class SelectingRaceController implements Initializable {
 
     public void selectQualification(ActionEvent actionEvent) {
         customButton.setVisible(false);
-        gridLabel.setText(qualificationLabel.getText());
+        gridLabel.setText(gridQual.getText());
         System.arraycopy(championship.drivers, 0, drivers, 0, drivers.length);
     }
 

@@ -250,7 +250,7 @@ public class RaceActivityController implements Initializable {
         if (racersFinished == driversList.size()) {
 
             System.out.println(driversList.get(0).totalTime);
-            if (driversList.get(0).totalTime >= 30 * 60 * 1000) {
+            if (driversList.get(0).totalTime >= 28 * 60 * 1000) {
                 System.out.println("Long race");
                 for (var driver : driversList) {
                     if (!driver.crashed && driver.numberOfPits == 0) {
@@ -431,10 +431,6 @@ public class RaceActivityController implements Initializable {
         int index = driversList.indexOf(driver);
         if (index == 0)
             return false;
-        if (driver.totalTime - driversList.get(index - 1).totalTime < 500) {
-            crash = (int) (Math.random() * crashValue + 1);
-            return crash == crashID;
-        }
         return false;
     }
 
